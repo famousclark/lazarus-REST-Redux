@@ -4,7 +4,7 @@ import {Switch, Route} from 'react-router-dom';
 import Views from './components/Views';
 import Viewform from './components/Viewform';
 import ViewDetails from './components/ViewDetails';
-//
+
 class App extends Component {
   render() {
     return (
