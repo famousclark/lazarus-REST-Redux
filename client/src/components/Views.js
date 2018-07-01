@@ -130,7 +130,15 @@ class Views extends Component{
             </div>
 
             <div className="extra content">
-              <button className='ui orange fluid button' type="button" name={view._id} onClick={this.onDelete}>Delete</button>
+              <div className="ui buttons">
+                <button className='ui secondary button' >
+                  <Link to={`/viewDetails/${view._id}`}>
+                    <div>Update</div>
+                  </Link>
+                </button>
+                <div className="or"></div>
+                <button className='ui orange button' type="button" name={view._id} onClick={this.onDelete}>Delete</button>
+              </div>
             </div>
 
           </div>
