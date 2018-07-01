@@ -8,7 +8,7 @@ import ViewDetails from './components/ViewDetails';
 class App extends Component {
   render() {
     return (
-      <div>
+      <div className='ui container'>
         <Switch>
           <Route exact path='/' component={Views}/>
           <Route path='/viewform' component={Viewform}/>

@@ -55,39 +55,102 @@ class Views extends Component{
 
   if(this.readyToLoad){
       const viewItems = this.props.views.map(view =>(
-
-          <div key={view._id}>
-            <Link to={`/viewDetails/${view._id}`}>
-              <h2>{view.threeFile}</h2>
-            </Link>
-            <p>{view.threeThumbnail}</p>
-            <p>{view.skybox.file}</p>
-            <p>{view.enableLight.toString()}</p>
-            <p>{view.enableMaterials.toString()}</p>
-            <p>{view.enableShaders.toString()}</p>
-            <p>{view.enableMeasurement.toString()}</p>
-            <p>{view.enableUnits}</p>
-              <div>
-                <button type="button" name={view._id} onClick={this.onDelete}>Delete</button>
+        <div key={view._id} className="ui card">
+          <div className="ui raised segment">
+            <div className="content">
+              <div className="header">
+                <div className="ui blue ribbon label">
+                  <Link to={`/viewDetails/${view._id}`}>
+                    <h2>{view.threeFile}</h2>
+                  </Link>
+                </div>
               </div>
+            </div>
+
+            <div className="content">
+              <div className="ui small feed">
+
+                  <div className="event">
+                    <div className="content">
+                      <div className="summary">
+                        <div>{view.threeThumbnail}</div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="event">
+                    <div className="content">
+                      <div className="summary">
+                        <div>{view.skybox.file}</div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="event">
+                    <div className="content">
+                      <div className="summary">
+                        <div>{view.enableLight.toString()}</div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="event">
+                    <div className="content">
+                      <div className="summary">
+                        <div>{view.enableMaterials.toString()}</div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="event">
+                    <div className="content">
+                      <div className="summary">
+                        <div>{view.enableShaders.toString()}</div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="event">
+                    <div className="content">
+                      <div className="summary">
+                        <div>{view.enableMeasurement.toString()}</div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="event">
+                    <div className="content">
+                      <div className="summary">
+                        <div>{view.enableUnits}</div>
+                      </div>
+                    </div>
+                  </div>
+
+              </div>
+            </div>
+
+            <div className="extra content">
+              <button className='ui orange fluid button' type="button" name={view._id} onClick={this.onDelete}>Delete</button>
+            </div>
+
           </div>
-
-
-
+        </div>
       ));
 
       return (
         <div>
-          <h1>Views</h1>
-            {viewform}
+          <h1 className='ui header'>Views</h1>
+            <h2>{viewform}</h2>
             <hr />
-            {viewItems}
+            <div className="ui link cards">
+              {viewItems}
+            </div>
         </div>
       );
     }else{
       return (
         <div>
-          <h1>Views</h1>
+          <h1 className='ui header'>Views</h1>
           {viewform}
           <p>Getting views...</p>
         </div>

@@ -23,6 +23,7 @@ class ViewDetails extends Component{
 
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
+    this.onDiscard = this.onDiscard.bind(this);
   }
 
   componentDidMount() {
@@ -44,6 +45,12 @@ class ViewDetails extends Component{
 
   onChange(e){
     this.setState({[e.target.name] : e.target.value});
+  }
+
+  onDiscard(e){
+    e.preventDefault();
+    const { history } = this.props;
+    history.push('/');
   }
 
   onSubmit(e){
@@ -86,6 +93,8 @@ class ViewDetails extends Component{
     }
     //console.log(view);
     this.props.updateView(view);
+    const { history } = this.props;
+    history.push('/');
   }
 
   render() {
@@ -97,66 +106,115 @@ class ViewDetails extends Component{
     if(this.readyToLoad){
       return (
         <div>
-          <h1>Change View</h1>
-          {view}
+          <h2>Change View</h2>
+          <h3>{view}</h3>
           <hr />
           <form onSubmit={this.onSubmit}>
-            <div>
-              <label>ThreeFile: </label><br />
-              <input type="text" name="threeFile" onChange={this.onChange} placeholder ={this.props.view.threeFile}/>
-            </div>
+            <div className="ui one column middle aligned very relaxed stackable grid">
+              <div className="column">
+                <div className="ui form">
+                  <div className="field">
+                    <div className="ui raised segment">
+                      <div className="ui blue ribbon label">
+                        <label>ThreeFile: </label>
+                      </div>
+                      <input type="text" name="threeFile" onChange={this.onChange} placeholder ={this.props.view.threeFile}/>
+                    </div>
+                  </div>
 
-            <div>
-              <label>ThreeThumbnail: </label><br />
-              <input type="text" name="threeThumbnail" onChange={this.onChange} placeholder ={this.props.view.threeThumbnail}/>
-            </div>
+                  <div className="field">
+                    <div className="ui raised segment">
+                      <div className="ui blue ribbon label">
+                        <label>ThreeThumbnail: </label>
+                      </div>
+                      <input type="text" name="threeThumbnail" onChange={this.onChange} placeholder ={this.props.view.threeThumbnail}/>
+                    </div>
+                  </div>
 
-            <div>
-              <label>Skybox: </label><br />
-              <input type="text" name="skybox" onChange={this.onChange} placeholder ={this.props.view.skybox.file}/>
-            </div>
+                  <div className="field">
+                    <div className="ui raised segment">
+                      <div className="ui blue ribbon label">
+                        <label>Skybox: </label>
+                      </div>
+                      <input type="text" name="skybox" onChange={this.onChange} placeholder ={this.props.view.skybox.file}/>
+                    </div>
+                  </div>
 
-            <div>
-              <label>EnableLight: {this.props.view.enableLight.toString()} </label><br />
-              <select name="enableLight" onChange={this.onChange}>
-                <option value="false">false</option>
-                <option value="true">true</option>
-              </select>
-            </div>
+                  <div className="ui inverted segment">
+                    <div className="field">
+                      <label>
+                        <div className="ui horizontal inverted divider">
+                          Enable Light: {this.props.view.enableLight.toString()}
+                        </div>
+                      </label>
+                      <select name="enableLight" onChange={this.onChange}>
+                        <option value="false">false</option>
+                        <option value="true">true</option>
+                      </select>
+                    </div>
+                  </div>
 
-            <div>
-              <label>EnableMaterials: {this.props.view.enableMaterials.toString()} </label><br />
-              <select name="enableMaterials" onChange={this.onChange}>
-                <option value="false">false</option>
-                <option value="true">true</option>
-              </select>
-            </div>
+                  <div className="ui inverted segment">
+                    <div className="field">
+                      <label>
+                        <div className="ui horizontal inverted divider">
+                          Enable Materials: {this.props.view.enableMaterials.toString()}
+                        </div>
+                      </label>
+                      <select name="enableMaterials" onChange={this.onChange}>
+                        <option value="false">false</option>
+                        <option value="true">true</option>
+                      </select>
+                    </div>
+                  </div>
 
-            <div>
-              <label>EnableShaders: {this.props.view.enableShaders.toString()} </label><br />
-              <select name="enableShaders" onChange={this.onChange}>
-                <option value="false">false</option>
-                <option value="true">true</option>
-              </select>
-            </div>
+                  <div className="ui inverted segment">
+                    <div className="field">
+                      <label>
+                        <div className="ui horizontal inverted divider">
+                          Enable Shaders: {this.props.view.enableShaders.toString()}
+                        </div>
+                      </label>
+                      <select name="enableShaders" onChange={this.onChange}>
+                        <option value="false">false</option>
+                        <option value="true">true</option>
+                      </select>
+                    </div>
+                  </div>
 
-            <div>
-              <label>EnableMeasurement: {this.props.view.enableMeasurement.toString()} </label><br />
-              <select name="enableMeasurement" onChange={this.onChange}>
-                <option value="false">false</option>
-                <option value="true">true</option>
-              </select>
-            </div>
+                  <div className="ui inverted segment">
+                    <div className="field">
+                      <label>
+                        <div className="ui horizontal inverted divider">
+                          Enable Measurement: {this.props.view.enableMeasurement.toString()}
+                        </div>
+                      </label>
+                      <select name="enableMeasurement" onChange={this.onChange}>
+                        <option value="false">false</option>
+                        <option value="true">true</option>
+                      </select>
+                    </div>
+                  </div>
 
-            <div>
-              <label>EnableUnits: </label><br />
-              <input type="text" name="enableUnits" onChange={this.onChange} placeholder ={this.props.view.enableUnits}/>
-            </div>
+                  <div className="field">
+                    <div className="ui raised segment">
+                      <div className="ui blue ribbon label">
+                        <label>EnableUnits: </label>
+                      </div>
+                      <input type="text" name="enableUnits" onChange={this.onChange} placeholder ={this.props.view.enableUnits}/>
+                    </div>
+                  </div>
 
-            <br />
+                  <br />
 
-            <div>
-              <button type="submit">Submit</button>
+                  <div className="ui buttons">
+                    <button className='ui fluid primary button' type="submit">Save</button>
+                    <div className="or"></div>
+                    <button className='ui fluid secondary button' onClick={this.onDiscard}>Discard</button>
+                  </div>
+
+                </div>
+              </div>
             </div>
           </form>
         </div>
@@ -164,7 +222,7 @@ class ViewDetails extends Component{
     }else{
       return (
         <div>
-          <h1>Change View</h1>
+          <h2>Change View</h2>
           {view}
           <p>Getting view...</p>
         </div>
