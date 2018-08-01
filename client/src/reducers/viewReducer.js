@@ -1,8 +1,9 @@
-import {GET_VIEWS, GET_VIEW, UPDATE_VIEW, ADD_VIEW, DELETE_VIEW} from '../actions/types';
+import {GET_VIEWS, GET_VIEW, GET_THREEFILE, UPDATE_VIEW, ADD_VIEW, DELETE_VIEW} from '../actions/types';
 
 const initialState = {
   views: [],
-  view: {}
+  view: {},
+  file: {}
 }
 
 export default function(state = initialState, action){
@@ -17,6 +18,11 @@ export default function(state = initialState, action){
       return {
         view: action.view
       };
+    case GET_THREEFILE:
+      console.log('get action');
+      return {
+        file: action.file
+      }
     case UPDATE_VIEW:
       console.log('put action');
       return {

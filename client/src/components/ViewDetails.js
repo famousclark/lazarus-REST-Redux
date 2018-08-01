@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
-import {getView, updateView} from '../actions/viewActions';
+import {getView, getThreeFile, updateView} from '../actions/viewActions';
 
 class ViewDetails extends Component{
 
@@ -28,23 +28,40 @@ class ViewDetails extends Component{
 
   componentDidMount() {
     const {match: {params} } = this.props;
-    console.log(params.id);
-    console.log(this.state);
+    console.log('componentDidMount - was called');
+    console.log(`componentDidMount - This is the params.id: ${params.id}`);
+    console.log(`componentDidMount - getView was called`);
     this.props.getView(params.id);
-    console.log(this.props.view);
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log('component WILL ReceiveProps was called');
+    console.log('componentWillReceiveProps - was called');
   }
 
   shouldComponentUpdate(nextProps, nextState) {
-    console.log('shouldComponentUpdate was called');
-    return this.readyToLoad = true
+    console.log('shouldComponentUpdate - was called');
+    return this.readyToLoad = true;
+
   }
 
   onChange(e){
-    this.setState({[e.target.name] : e.target.value});
+    if(e.target.name === 'threeFile' ){
+      console.log(e.target.files[0]);
+      this.setState({[e.target.name] : e.target.files[0]});
+    }
+    else if(e.target.name === 'threeThumbnail' ){
+      console.log(e.target.files[0]);
+      this.setState({[e.target.name] : e.target.files[0]});
+    }
+    else if(e.target.name === 'skybox' ){
+      console.log(e.target.files[0]);
+      this.setState({[e.target.name] : e.target.files[0]});
+    }
+    else{
+      this.setState({[e.target.name] : e.target.value});
+      //console.log(this.state);
+    }
+    //this.setState({[e.target.name] : //e.target.value});
   }
 
   onDiscard(e){
@@ -91,9 +108,12 @@ class ViewDetails extends Component{
       enableMeasurements: this.state.enableMeasurement,
       enableUnits: this.state.enableUnits
     }
-    //console.log(view);
-    this.props.updateView(view);
+
+    console.log({ ViewDetail : view });
+
     const { history } = this.props;
+
+    this.props.updateView(view);
     history.push('/');
   }
 
@@ -109,34 +129,48 @@ class ViewDetails extends Component{
           <h2>Change View</h2>
           <h3>{view}</h3>
           <hr />
-          <form onSubmit={this.onSubmit}>
+          <form
+            encType="multipart/form-data"
+            onSubmit={this.onSubmit}>
             <div className="ui one column middle aligned very relaxed stackable grid">
               <div className="column">
                 <div className="ui form">
                   <div className="field">
                     <div className="ui raised segment">
                       <div className="ui blue ribbon label">
-                        <label>ThreeFile: </label>
+                        <label>ThreeFile: {this.props.view.threeFile} </label>
                       </div>
-                      <input type="text" name="threeFile" onChange={this.onChange} placeholder ={this.props.view.threeFile}/>
+                      <input
+                        type="file"
+                        name="threeFile"
+                        onChange={this.onChange}
+                        accept=".gz"/>
                     </div>
                   </div>
 
                   <div className="field">
                     <div className="ui raised segment">
                       <div className="ui blue ribbon label">
-                        <label>ThreeThumbnail: </label>
+                        <label>ThreeThumbnail: {this.props.view.threeThumbnail} </label>
                       </div>
-                      <input type="text" name="threeThumbnail" onChange={this.onChange} placeholder ={this.props.view.threeThumbnail}/>
+                      <input
+                        type="file"
+                        name="threeThumbnail"
+                        onChange={this.onChange}
+                        accept="image/*"/>
                     </div>
                   </div>
 
                   <div className="field">
                     <div className="ui raised segment">
                       <div className="ui blue ribbon label">
-                        <label>Skybox: </label>
+                        <label>Skybox: {this.props.view.skybox.file} </label>
                       </div>
-                      <input type="text" name="skybox" onChange={this.onChange} placeholder ={this.props.view.skybox.file}/>
+                      <input
+                        type="file"
+                        name="skybox"
+                        onChange={this.onChange}
+                        accept="image/*"/>
                     </div>
                   </div>
 
@@ -233,13 +267,15 @@ class ViewDetails extends Component{
 }
 
 ViewDetails.propTypes = {
-  getView: PropTypes.func.isRequired,
-  udpateView: PropTypes.func.isRequired,
+  getView: PropTypes.func,
+  udpateView: PropTypes.func,
+  getThreefile: PropTypes.func,
   view: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
-  view: state.views.view
+  view: state.views.view,
+  file: state.views.file
 });
 
-export default connect(mapStateToProps, {getView, updateView})(ViewDetails);
+export default connect(mapStateToProps, {getView, getThreeFile, updateView})(ViewDetails);

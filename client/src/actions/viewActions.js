@@ -1,4 +1,4 @@
-import {GET_VIEWS, GET_VIEW, UPDATE_VIEW, ADD_VIEW, DELETE_VIEW} from './types';
+import {GET_VIEWS, GET_VIEW, GET_THREEFILE, UPDATE_VIEW, ADD_VIEW, DELETE_VIEW} from './types';
 
 export const getViews = () => dispatch => {
   console.log('Getting Views');
@@ -15,15 +15,28 @@ export const getViews = () => dispatch => {
 
 export const getView = (id) => dispatch => {
   console.log(`Getting View - ${id}`);
-    fetch(`http://localhost:3001/api/views/${id}`)
-      .then(res => res.json())
-      .then(view => {
-        dispatch({
-          type: GET_VIEW,
-          view
-        })
-        console.log(view);
-      });
+  fetch(`http://localhost:3001/api/views/${id}`)
+    .then(res => res.json())
+    .then(view => {
+      dispatch({
+        type: GET_VIEW,
+        view
+      })
+      console.log(view);
+    });
+};
+
+export const getThreeFile = (filename) => dispatch => {
+  console.log(`Getting threefile - ${filename}`);
+  fetch(`http://localhost:3001/api/file/${filename}`)
+    //.then(res => res.json())
+    .then(file => {
+      dispatch({
+        type: GET_THREEFILE,
+        file
+      })
+      console.log(file);
+    });
 };
 
 export const updateView = (view) => dispatch => {
@@ -45,18 +58,28 @@ export const updateView = (view) => dispatch => {
 
 export const addView = (view) => dispatch => {
   console.log('Adding view');
+  console.log(view);
+  var options = new FormData();
+  options.append('threeFile', view.threeFile);
+  options.append('threeThumbnail', view.threeThumbnail);
+  options.append('skybox', view.skybox.file);
+  options.append('enableLight', view.enableLight);
+  options.append('enableMaterials', view.enableMaterials);
+  options.append('enableShaders', view.enableShaders);
+  options.append('enableMeasurement', view.enableMeasurement);
+  options.append('enableUnits', view.enableUnits);
+
   fetch('http://localhost:3001/api/views', {
     method: 'POST',
-    headers: {
-      'content-type': 'application/json'
-    },
-    body: JSON.stringify(view)
+
+    body: options //JSON.stringify(view)
   })
     .then(res => res.json())
     .then(view => {dispatch({
       type: ADD_VIEW,
       view
     })});
+
 };
 
 export const deleteView = (id) => dispatch => {

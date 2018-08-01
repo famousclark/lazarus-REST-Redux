@@ -4,6 +4,8 @@ import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import {getViews, deleteView} from '../actions/viewActions';
 
+//import SpinningCube from './three/SpinningCube';
+
 class Views extends Component{
 
   constructor(props){
@@ -150,6 +152,7 @@ class Views extends Component{
           <h1 className='ui header'>Views</h1>
             <h2>{viewform}</h2>
             <hr />
+
             <div className="ui link cards">
               {viewItems}
             </div>

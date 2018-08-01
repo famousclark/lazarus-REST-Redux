@@ -4,11 +4,13 @@ var Schema = mongoose.Schema;
 var viewSchema = new Schema({
 
   threeFile:{
-    type: String
+    type: String,
+    required: true
   },
 
   threeThumbnail:{
-    type: String
+    type: String,
+    required: true
   },
 
   skybox:{

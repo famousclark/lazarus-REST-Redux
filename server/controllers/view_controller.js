@@ -1,9 +1,13 @@
 const mongoose = require('mongoose');
 const View = mongoose.model('view');
-
-exports.landing = (req, res) => {
+const upload = require('../server');
+console.log(upload);
+exports.landing = (req, res, upload) => {
   var info = 'Please use "/views" to create or list all data. & Please use "/views/:someID" to read, update, or delete';
-  res.send(info);
+  console.log(upload);
+  //console.log("req", req);
+  //console.log("res", res);
+  //res.send(info);
 };
 
 exports.getViews = (req, res) => {
@@ -17,14 +21,29 @@ exports.getViews = (req, res) => {
 };
 
 exports.addView = (req, res) => {
-  var new_task = new View(req.body);
-  new_task.save(
+  //console.log(req.files.threeFile[0].filename);
+  //console.log(req.files.threeThumbnail[0].filename);
+  //console.log(req.files.skybox[0].filename);
+  const newView = new View({
+    threeFile: req.files.threeFile[0].filename,
+    threeThumbnail: req.files.threeThumbnail[0].filename,
+    skybox: {file: req.files.skybox[0].filename},
+    enableLight: req.body.enableLight,
+    enableMaterials: req.body.enableMaterials,
+    enableShaders: req.body.enableShaders,
+    enableMeasurement: req.body.enableMeasurement,
+    enableUnits: req.body.enableUnits
+  });
+  console.log(newView);
+
+  newView.save(
     (err, view) => {
       if (err)
         res.send(err);
       res.json(view);
       console.log('View successfully added');
   });
+
 };
 
 

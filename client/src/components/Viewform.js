@@ -25,7 +25,22 @@ class Viewform extends Component{
   }
 
   onChange(e){
-    this.setState({[e.target.name] : e.target.value});
+    if(e.target.name === 'threeFile' ){
+      console.log(e.target.files[0]);
+      this.setState({[e.target.name] : e.target.files[0]});
+    }
+    else if(e.target.name === 'threeThumbnail' ){
+      console.log(e.target.files[0]);
+      this.setState({[e.target.name] : e.target.files[0]});
+    }
+    else if(e.target.name === 'skybox' ){
+      console.log(e.target.files[0]);
+      this.setState({[e.target.name] : e.target.files[0]});
+    }
+    else{
+      this.setState({[e.target.name] : e.target.value});
+      //console.log(this.state);
+    }
   }
 
   onDiscard(e){
@@ -60,6 +75,7 @@ class Viewform extends Component{
     }else{
       this.setState({[this.state.enableMeasurement] : true});
     }
+
     const view = {
       threeFile: this.state.threeFile,
       threeThumbnail: this.state.threeThumbnail,
@@ -71,6 +87,8 @@ class Viewform extends Component{
       enableUnits: this.state.enableUnits
     }
 
+    console.log({ ViewForm : view });
+
     const { history } = this.props;
 
     this.props.addView(view);
@@ -79,6 +97,7 @@ class Viewform extends Component{
 
 
   render() {
+
     const viewform = (
       <Link to='/'> Views </Link>
     );
@@ -88,16 +107,23 @@ class Viewform extends Component{
         <h2>Add View</h2>
         <h3>{viewform}</h3>
         <hr />
-        <form onSubmit={this.onSubmit}>
+        <form
+          encType="multipart/form-data"
+          onSubmit={this.onSubmit}>
           <div className="ui one column middle aligned very relaxed stackable grid">
             <div className="column">
+
               <div className="ui form">
                 <div className="field">
                   <div className="ui raised segment">
                     <div className="ui blue ribbon label">
                       <label>ThreeFile: </label>
                     </div>
-                    <input type="text" name="threeFile" onChange={this.onChange} value ={this.state.threeFile}/>
+                    <input
+                      type="file"
+                      name="threeFile"
+                      onChange={this.onChange}
+                      accept=".jpg"/>
                   </div>
                 </div>
 
@@ -106,7 +132,11 @@ class Viewform extends Component{
                     <div className="ui blue ribbon label">
                       <label>ThreeThumbnail: </label>
                     </div>
-                    <input type="text" name="threeThumbnail" onChange={this.onChange} value ={this.state.threeThumbnail}/>
+                    <input
+                      type="file"
+                      name="threeThumbnail"
+                      onChange={this.onChange}
+                      accept="image/*"/>
                   </div>
                 </div>
 
@@ -115,7 +145,11 @@ class Viewform extends Component{
                     <div className="ui blue ribbon label">
                       <label>Skybox: </label>
                     </div>
-                    <input type="text" name="skybox" onChange={this.onChange} value ={this.state.skybox}/>
+                    <input
+                      type="file"
+                      name="skybox"
+                      onChange={this.onChange}
+                      />
                   </div>
                 </div>
 
