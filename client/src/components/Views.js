@@ -57,89 +57,92 @@ class Views extends Component{
 
   if(this.readyToLoad){
       const viewItems = this.props.views.map(view =>(
-        <div key={view._id} className="ui card">
+        <div key={view._id} className="item">
           <div className="ui raised segment">
-            <div className="content">
-              <div className="header">
-                <div className="ui blue ribbon label">
-                  <Link to={`/viewDetails/${view._id}`}>
-                    <h2>{view.threeFile}</h2>
-                  </Link>
+            <div className="right floated contentht">
+              <div className="extra content">
+                <div className="ui buttons">
+                  <button className='ui secondary button' >
+                    <Link to={`/viewDetails/${view._id}`}>
+                      <div>Update</div>
+                    </Link>
+                  </button>
+                  <div className="or"></div>
+                  <button className='ui orange button' type="button" name={view._id} onClick={this.onDelete}>Delete</button>
                 </div>
               </div>
             </div>
-
             <div className="content">
-              <div className="ui small feed">
-
-                  <div className="event">
-                    <div className="content">
-                      <div className="summary">
-                        <div>{view.threeThumbnail}</div>
-                      </div>
-                    </div>
+              <div className="content">
+                <div className="header">
+                  <div className="ui blue ribbon label">
+                    <Link to={`/viewDetails/${view._id}`}>
+                      <h2>{view.threeFile}</h2>
+                    </Link>
                   </div>
-
-                  <div className="event">
-                    <div className="content">
-                      <div className="summary">
-                        <div>{view.skybox.file}</div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="event">
-                    <div className="content">
-                      <div className="summary">
-                        <div>{view.enableLight.toString()}</div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="event">
-                    <div className="content">
-                      <div className="summary">
-                        <div>{view.enableMaterials.toString()}</div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="event">
-                    <div className="content">
-                      <div className="summary">
-                        <div>{view.enableShaders.toString()}</div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="event">
-                    <div className="content">
-                      <div className="summary">
-                        <div>{view.enableMeasurement.toString()}</div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="event">
-                    <div className="content">
-                      <div className="summary">
-                        <div>{view.enableUnits}</div>
-                      </div>
-                    </div>
-                  </div>
-
+                </div>
               </div>
-            </div>
 
-            <div className="extra content">
-              <div className="ui buttons">
-                <button className='ui secondary button' >
-                  <Link to={`/viewDetails/${view._id}`}>
-                    <div>Update</div>
-                  </Link>
-                </button>
-                <div className="or"></div>
-                <button className='ui orange button' type="button" name={view._id} onClick={this.onDelete}>Delete</button>
+              <div className="content">
+                <div className="ui small feed">
+
+                    <div className="event">
+                      <div className="content">
+                        <div className="summary">
+                          <div>{view.threeThumbnail}</div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="event">
+                      <div className="content">
+                        <div className="summary">
+                          <div>{view.skybox.file}</div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="event">
+                      <div className="content">
+                        <div className="summary">
+                          <div>{view.enableLight.toString()}</div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="event">
+                      <div className="content">
+                        <div className="summary">
+                          <div>{view.enableMaterials.toString()}</div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="event">
+                      <div className="content">
+                        <div className="summary">
+                          <div>{view.enableShaders.toString()}</div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="event">
+                      <div className="content">
+                        <div className="summary">
+                          <div>{view.enableMeasurement.toString()}</div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="event">
+                      <div className="content">
+                        <div className="summary">
+                          <div>{view.enableUnits}</div>
+                        </div>
+                      </div>
+                    </div>
+
+                </div>
               </div>
             </div>
 
@@ -153,7 +156,7 @@ class Views extends Component{
             <h2>{viewform}</h2>
             <hr />
 
-            <div className="ui link cards">
+            <div className="ui relaxed divided list">
               {viewItems}
             </div>
         </div>

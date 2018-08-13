@@ -1,4 +1,4 @@
-import {GET_VIEWS, GET_VIEW, GET_THREEFILE, UPDATE_VIEW, ADD_VIEW, DELETE_VIEW} from './types';
+import {GET_VIEWS, GET_VIEW, UPDATE_VIEW, ADD_VIEW, DELETE_VIEW} from './types';
 
 export const getViews = () => dispatch => {
   console.log('Getting Views');
@@ -26,28 +26,23 @@ export const getView = (id) => dispatch => {
     });
 };
 
-export const getThreeFile = (filename) => dispatch => {
-  console.log(`Getting threefile - ${filename}`);
-  fetch(`http://localhost:3001/api/file/${filename}`)
-    //.then(res => res.json())
-    .then(file => {
-      dispatch({
-        type: GET_THREEFILE,
-        file
-      })
-      console.log(file);
-    });
-};
-
 export const updateView = (view) => dispatch => {
   console.log('update view');
   console.log(view);
+  var options = new FormData();
+  options.append('threeFile', view.threeFile);
+  options.append('threeThumbnail', view.threeThumbnail);
+  options.append('skybox', view.skybox.file);
+  options.append('enableLight', view.enableLight);
+  options.append('enableMaterials', view.enableMaterials);
+  options.append('enableShaders', view.enableShaders);
+  options.append('enableMeasurement', view.enableMeasurement);
+  options.append('enableUnits', view.enableUnits);
+
   fetch(`http://localhost:3001/api/views/${view._id}`, {
     method: 'PUT',
-    headers: {
-      'content-type': 'application/json'
-    },
-    body: JSON.stringify(view)
+
+    body: options
   })
     .then(res => res.json())
     .then(view => {dispatch({

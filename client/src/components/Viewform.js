@@ -52,25 +52,25 @@ class Viewform extends Component{
   onSubmit(e){
     e.preventDefault();
 
-    if(this.state.enableLight==='false'){
+    if(this.state.enableLight===false){
       this.setState({[this.state.enableLight] : false});
     }else{
       this.setState({[this.state.enableLight] : true});
     }
 
-    if(this.state.enableMaterials==='false'){
+    if(this.state.enableMaterials===false){
       this.setState({[this.state.enableMaterials] : false});
     }else{
       this.setState({[this.state.enableMaterials] : true});
     }
 
-    if(this.state.enableShaders==='false'){
+    if(this.state.enableShaders===false){
       this.setState({[this.state.enableShaders] : false});
     }else{
       this.setState({[this.state.enableShaders] : true});
     }
 
-    if(this.state.enableMeasurement==='false'){
+    if(this.state.enableMeasurement===false){
       this.setState({[this.state.enableMeasurement] : false});
     }else{
       this.setState({[this.state.enableMeasurement] : true});
