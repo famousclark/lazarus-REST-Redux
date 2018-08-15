@@ -115,7 +115,9 @@ class Viewform extends Component{
 
               <div className="ui form">
                 <div className="field">
-                  <div className="ui raised segment">
+                  <div className="ui inverted raised segment">
+
+
                     <div className="ui blue ribbon label">
                       <label>ThreeFile: </label>
                     </div>
@@ -123,12 +125,12 @@ class Viewform extends Component{
                       type="file"
                       name="threeFile"
                       onChange={this.onChange}
-                      accept=".jpg"/>
+                      accept=".gz|image/*"/>
                   </div>
                 </div>
 
                 <div className="field">
-                  <div className="ui raised segment">
+                  <div className="ui inverted raised segment">
                     <div className="ui blue ribbon label">
                       <label>ThreeThumbnail: </label>
                     </div>
@@ -136,12 +138,12 @@ class Viewform extends Component{
                       type="file"
                       name="threeThumbnail"
                       onChange={this.onChange}
-                      accept="image/*"/>
+                      accept=".gz|image/*"/>
                   </div>
                 </div>
 
                 <div className="field">
-                  <div className="ui raised segment">
+                  <div className="ui inverted raised segment">
                     <div className="ui blue ribbon label">
                       <label>Skybox: </label>
                     </div>
@@ -210,7 +212,7 @@ class Viewform extends Component{
                 </div>
 
                 <div className="field">
-                  <div className="ui raised segment">
+                  <div className="ui inverted raised segment">
                     <div className="ui blue ribbon label">
                       <label>EnableUnits: </label>
                     </div>

@@ -193,7 +193,6 @@ exports.updateView = (req, res) => {
                       reject(console.log({delete : `delete of ${view.threeThumbnail} - failed`}));
                   });
                 }
-
               });
             }
 

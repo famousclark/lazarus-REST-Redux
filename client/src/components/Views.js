@@ -4,6 +4,8 @@ import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import {getViews, deleteView} from '../actions/viewActions';
 
+//import '../styles/style.css'
+
 //import SpinningCube from './three/SpinningCube';
 
 class Views extends Component{
@@ -55,24 +57,40 @@ class Views extends Component{
       <Link to='/viewform'> Add view </Link>
     );
 
+    const padd = `.my-padd{
+      padding-top: 1em;
+    }`;
+
   if(this.readyToLoad){
       const viewItems = this.props.views.map(view =>(
         <div key={view._id} className="item">
-          <div className="ui raised segment">
-            <div className="right floated contentht">
+          <div className="ui inverted rasied segment" >
+            <div className="ui top attached label" >
+              <style>{padd}</style>
+              <Link to={`/viewDetails/${view._id}`}>
+                <h2>{view.threeFile}</h2>
+              </Link>
+            </div>
+
+            <div className="my-padd right floated content">
               <div className="extra content">
                 <div className="ui buttons">
-                  <button className='ui secondary button' >
+                  <button className='ui basic secondary button' >
                     <Link to={`/viewDetails/${view._id}`}>
                       <div>Update</div>
                     </Link>
                   </button>
                   <div className="or"></div>
-                  <button className='ui orange button' type="button" name={view._id} onClick={this.onDelete}>Delete</button>
+                  <button
+                    className='ui red button'
+                    type="button" name={view._id}
+                    onClick={this.onDelete}>Delete
+                  </button>
                 </div>
               </div>
             </div>
-            <div className="content">
+            <div className="my-padd content">
+              {/*
               <div className="content">
                 <div className="header">
                   <div className="ui blue ribbon label">
@@ -82,14 +100,14 @@ class Views extends Component{
                   </div>
                 </div>
               </div>
-
+              */}
               <div className="content">
                 <div className="ui small feed">
-
+                  <div className="ui large labels">
                     <div className="event">
                       <div className="content">
                         <div className="summary">
-                          <div>{view.threeThumbnail}</div>
+                          <h3 className="ui label">{view.threeThumbnail}</h3>
                         </div>
                       </div>
                     </div>
@@ -97,7 +115,7 @@ class Views extends Component{
                     <div className="event">
                       <div className="content">
                         <div className="summary">
-                          <div>{view.skybox.file}</div>
+                          <h3 className="ui label">{view.skybox.file}</h3>
                         </div>
                       </div>
                     </div>
@@ -105,7 +123,7 @@ class Views extends Component{
                     <div className="event">
                       <div className="content">
                         <div className="summary">
-                          <div>{view.enableLight.toString()}</div>
+                          <h3 className="ui label">{view.enableLight.toString()}</h3>
                         </div>
                       </div>
                     </div>
@@ -113,7 +131,7 @@ class Views extends Component{
                     <div className="event">
                       <div className="content">
                         <div className="summary">
-                          <div>{view.enableMaterials.toString()}</div>
+                          <h3 className="ui label">{view.enableMaterials.toString()}</h3>
                         </div>
                       </div>
                     </div>
@@ -121,7 +139,7 @@ class Views extends Component{
                     <div className="event">
                       <div className="content">
                         <div className="summary">
-                          <div>{view.enableShaders.toString()}</div>
+                          <h3 className="ui label">{view.enableShaders.toString()}</h3>
                         </div>
                       </div>
                     </div>
@@ -129,7 +147,7 @@ class Views extends Component{
                     <div className="event">
                       <div className="content">
                         <div className="summary">
-                          <div>{view.enableMeasurement.toString()}</div>
+                          <h3 className="ui label">{view.enableMeasurement.toString()}</h3>
                         </div>
                       </div>
                     </div>
@@ -137,11 +155,11 @@ class Views extends Component{
                     <div className="event">
                       <div className="content">
                         <div className="summary">
-                          <div>{view.enableUnits}</div>
+                          <h3 className="ui label">{view.enableUnits}</h3>
                         </div>
                       </div>
                     </div>
-
+                  </div>
                 </div>
               </div>
             </div>
@@ -152,7 +170,7 @@ class Views extends Component{
 
       return (
         <div>
-          <h1 className='ui header'>Views</h1>
+          <h1 className='ui grey header'>Views</h1>
             <h2>{viewform}</h2>
             <hr />
 
@@ -164,7 +182,7 @@ class Views extends Component{
     }else{
       return (
         <div>
-          <h1 className='ui header'>Views</h1>
+          <h1 className='ui grey header'>Views</h1>
           {viewform}
           <p>Getting views...</p>
         </div>

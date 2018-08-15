@@ -172,7 +172,7 @@ class ViewDetails extends Component{
               <div className="column">
                 <div className="ui form">
                   <div className="field">
-                    <div className="ui raised segment">
+                    <div className="ui inverted raised segment">
                       <div className="ui blue ribbon label">
                         <label>
                           <i className="file icon"></i>
@@ -188,7 +188,7 @@ class ViewDetails extends Component{
                   </div>
 
                   <div className="field">
-                    <div className="ui raised segment">
+                    <div className="ui inverted raised segment">
                       <div className="ui blue ribbon label">
                         <label>
                           <i className="file icon"></i>
@@ -204,7 +204,7 @@ class ViewDetails extends Component{
                   </div>
 
                   <div className="field">
-                    <div className="ui raised segment">
+                    <div className="ui inverted raised segment">
                       <div className="ui blue ribbon label">
                         <label>
                           <i className="file icon"></i>
@@ -276,7 +276,7 @@ class ViewDetails extends Component{
                   </div>
 
                   <div className="field">
-                    <div className="ui raised segment">
+                    <div className="ui inverted raised segment">
                       <div className="ui blue ribbon label">
                         <label>EnableUnits: {this.props.view.enableUnits.toString()}  </label>
                       </div>
